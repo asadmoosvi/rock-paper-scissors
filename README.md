@@ -6,3 +6,7 @@ This project is part of [The Odin Project's Foundations Course](https://www.theo
 
 - [x] Build initial command line version without a proper GUI (uses prompts and alerts)
 - [x] Build a proper web based GUI
+
+## Screenshot
+
+![website screenshot](./screenshot.png)
