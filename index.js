@@ -125,7 +125,8 @@ function playGui() {
   const playerChoices = document.querySelectorAll('#user .choice');
   const computerChoices = document.querySelectorAll('#computer .choice');
   const gameResults = document.querySelectorAll('.game__results');
-  const gameResultsHeading = document.querySelector('.game__results-heading');
+  const playerHeading = document.querySelector('#user .player__name');
+  const computerHeading = document.querySelector('#computer .player__name');
   const tableBody = document.querySelector('.results__body');
   let round = 0;
   let playerScore = 0,
@@ -164,7 +165,8 @@ function playGui() {
       } else if (result.winner === 'computer') {
         computerScore++;
       }
-      gameResultsHeading.textContent = `Results (player: ${playerScore}, computer: ${computerScore})`;
+      playerHeading.textContent = `Player (${playerScore})`;
+      computerHeading.textContent = `Computer (${computerScore})`;
 
       disableChoices(playerChoices);
       animateChoice(playerChoice);
@@ -205,7 +207,8 @@ function playGui() {
           playerScore = 0;
           computerScore = 0;
           tableBody.innerHTML = '';
-          gameResultsHeading.textContent = 'Results';
+          playerHeading.textContent = 'Player (0)';
+          computerHeading.textContent = 'Computer (0)';
         }
       }, 1000);
     });
