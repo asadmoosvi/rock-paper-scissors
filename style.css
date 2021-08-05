@@ -142,4 +142,7 @@ tr:nth-of-type(2n) {
   .results__icon {
     font-size: 2em;
   }
+  .container {
+    padding: 1rem;
+  }
 }
