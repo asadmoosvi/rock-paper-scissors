@@ -21,6 +21,11 @@ tr:nth-of-type(2n) {
   padding: 2rem;
 }
 
+.header-section {
+  display: flex;
+  justify-content: space-between;
+}
+
 .far {
   font-size: 8em;
 }
