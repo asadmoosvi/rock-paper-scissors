@@ -103,4 +103,115 @@ function game() {
   }
 }
 
-game();
+function animateChoice(choice) {
+  choice.classList.add('animate-choice');
+  setTimeout(() => {
+    choice.classList.remove('animate-choice');
+  }, 1000);
+}
+
+function disableChoices(choices) {
+  choices.forEach((choice) => {
+    choice.disabled = true;
+  });
+}
+
+function enableChoices(choices) {
+  choices.forEach((choice) => {
+    choice.disabled = false;
+  });
+}
+function playGui() {
+  const playerChoices = document.querySelectorAll('#user .choice');
+  const computerChoices = document.querySelectorAll('#computer .choice');
+  const gameResults = document.querySelectorAll('.game__results');
+  const gameResultsHeading = document.querySelector('.game__results-heading');
+  const tableBody = document.querySelector('.results__body');
+  let round = 0;
+  let playerScore = 0,
+    computerScore = 0;
+
+  playerChoices.forEach((playerChoice) => {
+    playerChoice.addEventListener('click', () => {
+      let computerValue = computerPlay().toLowerCase().trim();
+      let playerValue;
+      if (playerChoice.classList.contains('choice_rock')) {
+        playerValue = 'rock';
+      } else if (playerChoice.classList.contains('choice_paper')) {
+        playerValue = 'paper';
+      } else if (playerChoice.classList.contains('choice_scissors')) {
+        playerValue = 'scissors';
+      }
+      let result = playRound(playerValue, computerValue);
+      round++;
+
+      let newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td class="results__item">${round}</td>
+        <td class="results__item">
+          <i class="results__icon far fa-hand-${playerValue}"></i>
+        </td>
+        <td class="results__item">
+          <i class="results__icon far fa-hand-${computerValue}"></i>
+        </td>
+        <td class="results__item results__item_winner">${
+          result.winner ?? 'tie'
+        }</td>
+      `;
+      tableBody.appendChild(newRow);
+      if (result.winner === 'player') {
+        playerScore++;
+      } else if (result.winner === 'computer') {
+        computerScore++;
+      }
+      gameResultsHeading.textContent = `Results (player: ${playerScore}, computer: ${computerScore})`;
+
+      disableChoices(playerChoices);
+      animateChoice(playerChoice);
+
+      console.log(playerValue, computerValue);
+
+      computerChoices.forEach((computerChoice) => {
+        if (
+          computerChoice.classList.contains('choice_rock') &&
+          computerValue === 'rock'
+        ) {
+          animateChoice(computerChoice);
+        } else if (
+          computerChoice.classList.contains('choice_paper') &&
+          computerValue === 'paper'
+        ) {
+          animateChoice(computerChoice);
+        } else if (
+          computerChoice.classList.contains('choice_scissors') &&
+          computerValue === 'scissors'
+        ) {
+          animateChoice(computerChoice);
+        }
+      });
+
+      setTimeout(() => {
+        enableChoices(playerChoices);
+        if (playerScore === 5 || computerScore === 5) {
+          if (playerScore === 5) {
+            alert(
+              `You won with a final score of ${playerScore} to ${computerScore}!`
+            );
+          } else if (computerScore === 5) {
+            alert(
+              `You lost with a final score of ${playerScore} to ${computerScore}. :( Better luck next time!`
+            );
+          }
+          alert('Restarting game!');
+          round = 0;
+          playerScore = 0;
+          computerScore = 0;
+          tableBody.innerHTML = '';
+          gameResultsHeading.textContent = 'Results';
+        }
+      }, 1000);
+    });
+  });
+}
+
+playGui();

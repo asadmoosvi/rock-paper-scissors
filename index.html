@@ -3,8 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/66d11e8a18.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="index.js" defer></script>
     <title>Rock, paper, scissors</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h1 class="title">Rock, paper, scissors</h1>
+      <div class="game">
+        <div id="user" class="game__player">
+          <div class="player">
+            <div class="player__name">Player</div>
+            <div class="player__choices">
+              <button class="choice choice_rock">
+                <i class="far fa-hand-rock"></i>
+              </button>
+              <button class="choice choice_paper">
+                <i class="far fa-hand-paper"></i>
+              </button>
+              <button class="choice choice_scissors">
+                <i class="far fa-hand-scissors"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="computer" class="game__player">
+          <div class="player">
+            <div class="player__name">Computer</div>
+            <div class="player__choices">
+              <button disabled class="choice choice_rock">
+                <i class="far fa-hand-rock"></i>
+              </button>
+              <button disabled class="choice choice_paper">
+                <i class="far fa-hand-paper"></i>
+              </button>
+              <button disabled class="choice choice_scissors">
+                <i class="far fa-hand-scissors"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="game__results">
+          <h2 class="game__results-heading">Results</h2>
+          <table class="results">
+            <thead class="results__header">
+              <tr>
+                <th class="results__item results__item_header">Round</th>
+                <th class="results__item results__item_header">Player</th>
+                <th class="results__item results__item_header">Computer</th>
+                <th class="results__item results__item_header">Winner</th>
+              </tr>
+            </thead>
+            <tbody class="results__body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
