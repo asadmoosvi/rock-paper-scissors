@@ -114,15 +114,20 @@ tr:nth-of-type(2n) {
   transform: none;
 }
 
+.win {
+  color: #32a852 !important;
+}
+.lose {
+  color: #cf362b !important;
+}
+
 .animate-choice {
-  animation: 300ms ease-in-out 3 animate-choice;
+  animation: 500ms ease-in-out 3 animate-choice;
 }
 
 @keyframes animate-choice {
   50% {
     opacity: 1;
-    color: var(--clr--accent);
-    border: 1px solid var(--clr--accent);
   }
 }
 

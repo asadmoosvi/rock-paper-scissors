@@ -103,11 +103,13 @@ function game() {
   }
 }
 
-function animateChoice(choice) {
+function animateChoice(choice, winStatus) {
+  if (winStatus) choice.classList.add(winStatus);
   choice.classList.add('animate-choice');
   setTimeout(() => {
     choice.classList.remove('animate-choice');
-  }, 1000);
+    if (winStatus) choice.classList.remove(winStatus);
+  }, 1500);
 }
 
 function disableChoices(choices) {
@@ -147,12 +149,22 @@ function playGui() {
       round++;
 
       let newRow = document.createElement('tr');
+      let playerIconState = '',
+        computerIconState = '';
+      if (result.winner === 'player') {
+        playerIconState = 'win';
+        computerIconState = 'lose';
+      } else if (result.winner === 'computer') {
+        computerIconState = 'win';
+        playerIconState = 'lose';
+      }
+
       newRow.innerHTML = `
         <td class="results__item">${round}</td>
-        <td class="results__item">
+        <td class="${playerIconState} results__item">
           <i class="results__icon far fa-hand-${playerValue}"></i>
         </td>
-        <td class="results__item">
+        <td class="${computerIconState} results__item">
           <i class="results__icon far fa-hand-${computerValue}"></i>
         </td>
         <td class="results__item results__item_winner">${
@@ -169,24 +181,24 @@ function playGui() {
       computerHeading.textContent = `Computer (${computerScore})`;
 
       disableChoices(playerChoices);
-      animateChoice(playerChoice);
+      animateChoice(playerChoice, playerIconState);
 
       computerChoices.forEach((computerChoice) => {
         if (
           computerChoice.classList.contains('choice_rock') &&
           computerValue === 'rock'
         ) {
-          animateChoice(computerChoice);
+          animateChoice(computerChoice, computerIconState);
         } else if (
           computerChoice.classList.contains('choice_paper') &&
           computerValue === 'paper'
         ) {
-          animateChoice(computerChoice);
+          animateChoice(computerChoice, computerIconState);
         } else if (
           computerChoice.classList.contains('choice_scissors') &&
           computerValue === 'scissors'
         ) {
-          animateChoice(computerChoice);
+          animateChoice(computerChoice, computerIconState);
         }
       });
 
@@ -210,7 +222,7 @@ function playGui() {
           playerHeading.textContent = 'Player (0)';
           computerHeading.textContent = 'Computer (0)';
         }
-      }, 1000);
+      }, 1500);
     });
   });
 }
