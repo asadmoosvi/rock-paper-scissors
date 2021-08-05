@@ -5,4 +5,4 @@ This project is part of [The Odin Project's Foundations Course](https://www.theo
 ## Tasks
 
 - [x] Build initial command line version without a proper GUI (uses prompts and alerts)
-- [ ] Build a proper web based GUI
+- [x] Build a proper web based GUI
