@@ -169,8 +169,6 @@ function playGui() {
       disableChoices(playerChoices);
       animateChoice(playerChoice);
 
-      console.log(playerValue, computerValue);
-
       computerChoices.forEach((computerChoice) => {
         if (
           computerChoice.classList.contains('choice_rock') &&
