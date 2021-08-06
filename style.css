@@ -128,7 +128,6 @@ tr:nth-of-type(2n) {
 
 .animate-choice {
   animation: 500ms ease-in-out 3 alternate animate-choice;
-  opacity: 1 !important;
 }
 
 @keyframes animate-choice {
