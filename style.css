@@ -1,7 +1,9 @@
 :root {
   --clr-primary: #fff;
   --clr-secondary: #181818;
-  --clr--accent: #452a85;
+  --clr-accent: #452a85;
+  --clr-green: #32a852;
+  --clr-red: #cf362b;
 }
 body {
   font-family: 'Comfortaa', sans-serif;
@@ -10,7 +12,7 @@ body {
 
 h1,
 h2 {
-  color: var(--clr--accent);
+  color: var(--clr-accent);
   margin-top: 0;
 }
 
@@ -80,7 +82,7 @@ tr:nth-of-type(2n) {
 }
 .player__name {
   font-size: 1.6em;
-  color: var(--clr--accent);
+  color: var(--clr-accent);
 }
 .player__choices {
   display: flex;
@@ -120,10 +122,10 @@ tr:nth-of-type(2n) {
 }
 
 .win {
-  color: #32a852 !important;
+  color: var(--clr-green) !important;
 }
 .lose {
-  color: #cf362b !important;
+  color: var(--clr-red) !important;
 }
 
 .animate-choice {
