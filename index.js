@@ -133,6 +133,34 @@ function playGui() {
   let round = 0;
   let playerScore = 0,
     computerScore = 0;
+  const popupSuccess = document.querySelector('.popup_success');
+  const popupFailure = document.querySelector('.popup_failure');
+  const popups = [popupSuccess, popupFailure];
+  let totalScoreRequired = 5;
+  // add popup event listeners
+  popups.forEach((popup) => {
+    popup
+      .querySelector('.popup__button_close')
+      .addEventListener('click', () => {
+        popup.classList.remove('popup_show');
+        totalScoreRequired += 5;
+        enableChoices(playerChoices);
+      });
+
+    popup
+      .querySelector('.popup__button_restart')
+      .addEventListener('click', () => {
+        round = 0;
+        playerScore = 0;
+        computerScore = 0;
+        totalScoreRequired = 5;
+        tableBody.innerHTML = '';
+        playerHeading.textContent = 'Player (0)';
+        computerHeading.textContent = 'Computer (0)';
+        popup.classList.remove('popup_show');
+        enableChoices(playerChoices);
+      });
+  });
 
   playerChoices.forEach((playerChoice) => {
     playerChoice.addEventListener('click', () => {
@@ -204,23 +232,24 @@ function playGui() {
 
       setTimeout(() => {
         enableChoices(playerChoices);
-        if (playerScore === 5 || computerScore === 5) {
-          if (playerScore === 5) {
-            alert(
-              `You won with a final score of ${playerScore} to ${computerScore}!`
-            );
-          } else if (computerScore === 5) {
-            alert(
-              `You lost with a final score of ${playerScore} to ${computerScore}. :( Better luck next time!`
-            );
+        if (
+          playerScore === totalScoreRequired ||
+          computerScore === totalScoreRequired
+        ) {
+          if (playerScore === totalScoreRequired) {
+            let popupText = popupSuccess.querySelector('.popup__text');
+            popupText.textContent = `You won! 😎 (${playerScore} to ${computerScore}). Close this popup to play until ${
+              totalScoreRequired + 5
+            } points.`;
+            popupSuccess.classList.add('popup_show');
+          } else if (computerScore === totalScoreRequired) {
+            let popupText = popupFailure.querySelector('.popup__text');
+            popupText.textContent = `You lost. 😢 (${playerScore} to ${computerScore}). Better luck next time! Close this popup to play until ${
+              totalScoreRequired + 5
+            } points.`;
+            popupFailure.classList.add('popup_show');
           }
-          alert('Restarting game!');
-          round = 0;
-          playerScore = 0;
-          computerScore = 0;
-          tableBody.innerHTML = '';
-          playerHeading.textContent = 'Player (0)';
-          computerHeading.textContent = 'Computer (0)';
+          disableChoices(playerChoices);
         }
       }, 1500);
     });
