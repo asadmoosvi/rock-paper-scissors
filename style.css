@@ -99,7 +99,7 @@ tr:nth-of-type(2n) {
 }
 @media (hover: hover) and (pointer: fine) {
   .choice:hover,
-  .choice:focus {
+  .choice:focus-visible {
     background: var(--clr-secondary);
     color: var(--clr-primary);
   }
