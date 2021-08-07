@@ -126,7 +126,6 @@ function enableChoices(choices) {
 function playGui() {
   const playerChoices = document.querySelectorAll('#user .choice');
   const computerChoices = document.querySelectorAll('#computer .choice');
-  const gameResults = document.querySelectorAll('.game__results');
   const playerHeading = document.querySelector('#user .player__name');
   const computerHeading = document.querySelector('#computer .player__name');
   const tableBody = document.querySelector('.results__body');
