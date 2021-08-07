@@ -21,7 +21,7 @@ tr:nth-of-type(2n) {
 }
 
 .popup {
-  position: absolute;
+  position: fixed;
   top: 1rem;
   left: 2rem;
   right: 2rem;
